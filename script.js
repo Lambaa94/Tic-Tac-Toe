@@ -2,7 +2,7 @@ const statusDisplay = document.querySelector('.gameStatus');
 
 let gameActive = true;
 
-let currentPlayer = "X";
+let currentPlayer = "X"
 
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
@@ -20,11 +20,7 @@ function handleCellPlayed(clickedCell, clickedCellIndex) {
     clickedCell.innerHTML = currentPlayer
 
 }
-function handlePlayerChange() {
 
-
-
-}
 
 const winningConditions = [
     [0, 1, 2],
@@ -66,7 +62,7 @@ function handleResultValidation() {
         return;
     }
 
-    
+    handlePlayerChange();
 }
 
 function handlePlayerChange(){
@@ -95,10 +91,14 @@ function handleCellClick(clickedCellEvent) {
 
 }
 function handleRestartGame() {
-
+    gameActive = true;
+    currentPlayer = "X";
+    gameState = ["", "", "", "", "", "", "", "", ""];
+    statusDisplay.innerHTML = currentPlayerTurn();
+    document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
 
 
 }
 
-document.querySelector('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
+document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 document.querySelector('.game-restart').addEventListener('click', handleRestartGame);
